@@ -1,4 +1,5 @@
-['create student'](https://fancy-worm-shoe.cyclic.app/create) ###create student route
+['create student'](https://fancy-worm-shoe.cyclic.app/create)
+# post request
 ```
 //schema for creating student
 first_name: string,
@@ -9,4 +10,7 @@ first_name: string,
     level: number,
     gender: string
 ```
-
+# get request
+['create student'](https://fancy-worm-shoe.cyclic.app/student)
+# logging routes accept post request
+['create student'](https://fancy-worm-shoe.cyclic.app/login)
