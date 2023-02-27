@@ -11,5 +11,8 @@ app.use(express.json());
 
 // routes
 app.use("/api", Router);
+app.use("/", (req, res) => {
+  res.status(404).send("wrong route");
+});
 // close connection
-app.listen(300);
+app.listen(3000);

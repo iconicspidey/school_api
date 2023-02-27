@@ -5,11 +5,7 @@ const student = async (req, res) => {
   //   const random = person.person();
   //   array.push(random);
   // }
-  try {
-    const user = await fetch("https://random-data-api.com/api/v2/users");
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(error);
-  }
+
+  res.status(200).json({ user: "all student records comes from here" });
 };
 module.exports = student;
