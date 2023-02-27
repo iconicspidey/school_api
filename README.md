@@ -1,4 +1,4 @@
-['create student'](https://fancy-worm-shoe.cyclic.app/create)
+['create student'](https://fancy-worm-shoe.cyclic.app/create) ### create student route
 ```
 //schema for creating student
 first_name: string,
@@ -9,3 +9,4 @@ first_name: string,
     level: number,
     gender: string
 ```
+
