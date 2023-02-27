@@ -1,4 +1,4 @@
-const person = require("random-person");
+// const person = require("random-person");
 const student = (req, res) => {
   const array = [];
   for (let i = 0; i < 100; i++) {
