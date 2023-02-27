@@ -2,7 +2,7 @@
 # post request
 ```
 //schema for creating student
-first_name: string,
+    first_name: string,
     last_name: string,
     other_name: string,
     matric_no: string,
@@ -14,3 +14,9 @@ first_name: string,
 ['Get all student'](https://fancy-worm-shoe.cyclic.app/student)
 # logging routes accept post request
 ['Login'](https://fancy-worm-shoe.cyclic.app/login)
+
+```
+//schema for logging 
+ Matric : string,
+ Password: string
+```
