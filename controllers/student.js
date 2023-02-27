@@ -1,11 +1,13 @@
 // const person = require("random-person");
+const axios = require("axios");
 const student = async (req, res) => {
-  // const array = [];
-  // for (let i = 0; i < 100; i++) {
-  //   const random = person.person();
-  //   array.push(random);
-  // }
-
-  res.status(200).json({ user: "all student records comes from here" });
+  try {
+    const response = await axios.get(
+      "https://random-data-api.com/api/v2/users"
+    );
+    res.status(200).json(response.data);
+  } catch (err) {
+    console.log(err);
+  }
 };
 module.exports = student;
