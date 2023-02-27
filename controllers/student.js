@@ -3,8 +3,9 @@ const axios = require("axios");
 const student = async (req, res) => {
   try {
     const response = await axios.get(
-      "https://random-data-api.com/api/v2/users"
+      "https://jsonplaceholder.typicode.com/users"
     );
+    console.log(response);
     res.status(200).json(response.data);
   } catch (err) {
     console.log(err);
