@@ -11,6 +11,6 @@ first_name: string,
     gender: string
 ```
 # get request
-['create student'](https://fancy-worm-shoe.cyclic.app/student)
+['Get all student'](https://fancy-worm-shoe.cyclic.app/student)
 # logging routes accept post request
-['create student'](https://fancy-worm-shoe.cyclic.app/login)
+['Login'](https://fancy-worm-shoe.cyclic.app/login)
