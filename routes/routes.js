@@ -8,8 +8,8 @@ const AdminAuth = require("../middlewares/adminAuth");
 const Router = express.Router();
 
 Router.get("/admin/:id", admin);
-Router.post("/create", createStudent);
+Router.post("/student/create", createStudent);
 Router.get("/students", AdminAuth, students);
-Router.post("/adminlogin", adminLogin);
-Router.post("/studentlogin", studentLogin);
+Router.post("/admin/login", adminLogin);
+Router.post("/student/login", studentLogin);
 module.exports = Router;
