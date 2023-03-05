@@ -9,25 +9,22 @@
 </head>
 
 <body>
-    <button>login</button>
+    <button class="login">login</button>
+    <button class="student">student</button>
     <script>
-        document.querySelector('button').addEventListener('click', getData)
-        function getData() {
-            fetch('http://localhost:3000/api/login', {
-                method: "post",
-                body: JSON.stringify({ matric: '1234', password: '11232334' }),
+
+        const student = document.querySelector('.student')
+        student.addEventListener('click', () => {
+            fetch("http://localhost:3000/api/students", {
                 headers: {
-                    "Authorization": "bearer 'djakjdflkjalfkjdlsdkjfl",
+                    "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlhaHV6YUBnbWFpbC5jb20iLCJwYXNzd29yZCI6ImRmYWRmYWRmIiwiaWF0IjoxNjc3ODIxODI0fQ.jPjawhiYLxH7cIAGeHwxWsc3v2kw8aeawrhGPmkUHlc",
                     "content-type": "application/json"
                 }
-            }).then(res => {
-                console.log(res)
-                return res.json()
-            }).then(result => {
-                console.log(result)
-            })
-        }
 
+            })
+                .then(res => res.json())
+                .then(result => console.log(result))
+        })
     </script>
 </body>
 

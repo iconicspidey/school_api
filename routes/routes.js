@@ -1,15 +1,20 @@
 const express = require("express");
 const createStudent = require("../controllers/createStudent");
-const studentLogin = require("../controllers/login");
-const admin = require("../controllers/admin");
+const studentInfor = require("../controllers/studentInfor");
 const students = require("../controllers/students");
-const adminLogin = require("../controllers/adminLogin");
 const AdminAuth = require("../middlewares/adminAuth");
+const allocatedStudents = require("../controllers/allocatedStudents");
+const makeAdmin = require("../controllers/makeAdmin");
+const login = require("../controllers/login");
+const studentsRoom = require("../controllers/studentsRoom");
 const Router = express.Router();
-
-Router.get("/admin/:id", admin);
-Router.post("/student/create", createStudent);
+// get routes
+Router.get("/students/:id/details", studentInfor);
 Router.get("/students", AdminAuth, students);
-Router.post("/admin/login", adminLogin);
-Router.post("/student/login", studentLogin);
+Router.get("/allocated-students", allocatedStudents);
+Router.get("/add-admin", AdminAuth, makeAdmin);
+Router.get("/students/:id/room", students);
+// post routes
+Router.post("/login", login);
+Router.post("/create-student", createStudent);
 module.exports = Router;

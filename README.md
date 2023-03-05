@@ -41,7 +41,6 @@ If the provided credentials are valid, the response to a POST request will be a 
 
 If the provided credentials are invalid, the response will be an error message indicating that the login attempt failed and the reason for the failure.
 
-```
 ## Get all students endpoint
 
 This endpoint is protect only the admin can access it. The use of JWTs ensures that only authorized users can access the protected resources of the web application.
@@ -49,7 +48,8 @@ Endpoint URL
 
 The URL for the JWT-protected GET request is as follows:
 
-https://example.com/api/protected-resource
+https://fancy-worm-shoe.cyclic.app/api/students
+
 Supported Requests
 
 The endpoint supports the following HTTP requests:
@@ -60,10 +60,6 @@ Authentication
 
 To access the protected resource, the user must include a valid JWT in the HTTP header of their GET request. The JWT should be included in the "Authorization" field of the HTTP header using the "Bearer" scheme as follows:
 
-
-
-
-```
 
 ```javascript
 fetch("https://fancy-worm-shoe.cyclic.app/api/admin/login", {
@@ -84,7 +80,7 @@ If the provided JWT is valid and the user is authorized to access the requested 
 
 If the provided JWT is invalid or the user is not authorized to access the requested resource, the response will be an error message indicating that the request failed and the reason for the failure.
 
-## Adding new student endpoint
+# Adding new student endpoint
 
 The Student Creation Endpoint with Schema URL for this web application is as follows:
 
@@ -113,15 +109,15 @@ const schema = Joi.object({
 
 This JSON schema enforces the data types, formats, and constraints for each parameter.
 
-## Authentication
+# Authentication
 
 This endpoint requires authentication to access it. Only authorized users with valid login credentials can create student records within the system.
 
-## Response
+# Response
 
 If the student record creation is successful and the data matches the JSON schema, the response to a POST request will be a JSON object containing the created.
 
-## Student Login Endpoint
+# Student Login Endpoint
 
 This API endpoint allows registered students to log in to the system.
 Endpoint URL https://fancy-worm-shoe.cyclic.app/api/studen/login

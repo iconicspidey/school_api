@@ -12,9 +12,7 @@ dotenv.config();
 // routes
 app.use("/api", Router);
 app.use("/", (req, res) => {
-  res
-    .status(404)
-    .json({ message: "the route you are looking for does not exist" });
+  res.status(404).json("this route does not exist");
 });
 // close connection
 app.listen(3000);
