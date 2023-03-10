@@ -3,7 +3,6 @@ const jwt = require("jsonwebtoken");
 function AdminAuth(req, res, next) {
   const SECRET_KEY = process.env.SECRET_KEY;
   const authorization = req.headers.authorization;
-  console.log(SECRET_KEY);
   if (!authorization) {
     return res.status(401).json({
       message: "No Authorization Header",

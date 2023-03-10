@@ -1,18 +1,19 @@
 const joi = require("joi");
-const data = require("../data.json");
-const studentInfor = (req, res) => {
+const pool = require("../database");
+const studentInfor = async (req, res) => {
   const { id } = req.params;
-  const schema = joi.object({
-    id: joi.string().required(),
-  });
-  const { error, value } = schema.validate({ id });
-  if (error) {
-    res.status(406).json(error.details);
-  } else {
-    const findStudent = data.find(
-      (student) => student.matric == value.id.trim()
-    );
-    res.status(202).json(findStudent);
+  try {
+    const [student, __] = await pool
+      .promise()
+      .query("select * from `students` where `student_id` = ?", [id]);
+    if (student[0]) {
+      delete student[0].student_password;
+      res.status(200).json(student[0]);
+    } else {
+      res.status(200).send("no such student");
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
   }
 };
 

@@ -1,47 +1,45 @@
-## Admin Login Endpoint
+# Login end point
 
-This README document describes the usage of the Admin Login Endpoint for a web application.
-Overview
+The  Login Endpoint is designed to handle HTTP requests and responses to enable communication between the web application and administrators who are responsible for managing the system. This endpoint serves as a means of authentication, allowing only authorized administrators to access restricted areas of the web application.
 
-The Admin Login Endpoint is designed to handle HTTP requests and responses to enable communication between the web application and administrators who are responsible for managing the system. This endpoint serves as a means of authentication, allowing only authorized administrators to access restricted areas of the web application.
-Endpoint URL
+The  Login Endpoint URL for this web application
 
-The Admin Login Endpoint URL for this web application is as follows:
+https://fancy-worm-shoe.cyclic.app/api/login
 
-https://fancy-worm-shoe.cyclic.app/api/admin/login
-
-# Supported Requests
-
-This Admin Login Endpoint supports the following HTTP requests:
+## Supported Requests
 
     POST
 
-# Request Parameters
+## Request Parameters
 
 The following parameters are required for a successful login:
 
-    mail - the mail of the administrator.
-    password - the password of the administrator.
-
-# Authentication
-
-The Admin Login Endpoint requires authentication to access it. To authenticate, administrators should include their valid login credentials in the request body as a JSON object containing their mail and password.
-
-If the provided credentials are valid, the endpoint will generate and return a JSON Web Token (JWT) in the response body. The JWT should then be included in the HTTP header of subsequent requests to authenticate the administrator's identity and access to restricted areas of the web application.
-Response
-
-If the provided credentials are valid, the response to a POST request will be a JSON object containing a JWT as follows:
-
-```json
+```javascript
 {
-  "token": "<JWT>",
-  "user": "logged user detail"
+  "user": "string: email or student matric number",
+  "password": "string"
 }
 ```
+**If the provided credentials are invalid, the response will be an error message indicating that the login attempt failed and the reason for the failure**
 
-If the provided credentials are invalid, the response will be an error message indicating that the login attempt failed and the reason for the failure.
+## response
+the backend will response with the access token to be use in subsequent. here are the parameter that will be send back after correct credential have been supply
+```javascript
+    {user : object(), token : string()}
+```
+this how subsequent request will be like
+```javascript
+fetch("https://fancy-worm-shoe.cyclic.app/api/admin/sample", {
+  methods: "post",
+  body: JSON.stringify(),
+  headers: {
+    "content-type": "application/json",
+    Authorization: "Bearer <token here>",
+  },
+});
+```
 
-## Get all students endpoint
+# Get all students endpoint
 
 This endpoint is protect only the admin can access it. The use of JWTs ensures that only authorized users can access the protected resources of the web application.
 Endpoint URL
@@ -56,35 +54,12 @@ The endpoint supports the following HTTP requests:
 
     GET
 
-Authentication
-
-To access the protected resource, the user must include a valid JWT in the HTTP header of their GET request. The JWT should be included in the "Authorization" field of the HTTP header using the "Bearer" scheme as follows:
-
-
-```javascript
-fetch("https://fancy-worm-shoe.cyclic.app/api/admin/login", {
-  methods: "post",
-  body: JSON.stringify(),
-  headers: {
-    "content-type": "application/json",
-    Authorization: "Bearer <token here>",
-  },
-});
-```
-
-The JWT should be obtained by successfully logging in with valid credentials using the web application's authentication system.
-
-# Response
-
-If the provided JWT is valid and the user is authorized to access the requested resource, the response to a GET request will be a JSON object containing the requested data.
-
-If the provided JWT is invalid or the user is not authorized to access the requested resource, the response will be an error message indicating that the request failed and the reason for the failure.
 
 # Adding new student endpoint
 
 The Student Creation Endpoint with Schema URL for this web application is as follows:
 
-https://fancy-worm-shoe.cyclic.app/api/student/create
+https://fancy-worm-shoe.cyclic.app/api/student/add-student
 Supported Requests
 
 This Student Creation Endpoint with Schema supports the following HTTP requests:
@@ -109,29 +84,79 @@ const schema = Joi.object({
 
 This JSON schema enforces the data types, formats, and constraints for each parameter.
 
-# Authentication
+## Authentication
 
-This endpoint requires authentication to access it. Only authorized users with valid login credentials can create student records within the system.
+This endpoint requires authentication to access it. Only authorized users with valid login credentials can create student records within the system, users such as admin and the moderator. JWT must be include in the request headers 
 
-# Response
+## Response
 
 If the student record creation is successful and the data matches the JSON schema, the response to a POST request will be a JSON object containing the created.
 
-# Student Login Endpoint
+# Single  student endpoint
 
-This API endpoint allows registered students to log in to the system.
-Endpoint URL https://fancy-worm-shoe.cyclic.app/api/studen/login
+This endpoint is protect only logged in user  can access it. the user id has to be attach to the endpoint as params
 
-The endpoint support
-post request
+The URL for this endpoint:
 
-The request must include a JSON object with the following properties:
+https://fancy-worm-shoe.cyclic.app/api/students/{id}/details
 
-| parameter | Type   |
-| --------- | ------ |
-| matric    | string |
-| password  | string |
+Supported Requests
 
-# Response
+The endpoint supports the following HTTP requests:
 
-If the student's email and password are correct, the server will respond with a JSON object containing an access token . The token should be used to authenticate the student in subsequent requests. The token will be attach to the request headers.
+    GET
+
+Authentication
+
+this endpoint response includes students information so the route is protected you have to be authorise to access the endpoint by providing token in request headers 
+
+# Allocated students endpoint
+This endpoint cant only be access by the admins to get all the students that are allocated.
+
+The URL for this endpont
+https://fancy-worm-shoe.cyclic.app/api/allocated-students
+
+The endpoint supports the following HTTP requests:
+
+    GET
+## Authentication
+only admin can access this endpoint
+
+# Add new Admin 
+This endpoint can only be access by the admins only. student id need to be include in the params
+
+ Here is the URL 
+ https://fancy-worm-shoe.cyclic.app/api/add-admin/{id}
+
+The endpoint supports the following HTTP requests:
+
+GET
+
+
+# Student reciept
+This endpoint supply the details and hosel of the student to be printed as pdf.
+the id of the student will be supply as params to get the exalt student details
+
+endpoint URL
+ https://fancy-worm-shoe.cyclic.app/api/students/{id}/reciept
+
+ The endpoint supports the following HTTP requests:
+
+    GET
+
+# edit student endpoint
+
+this endpoint is for the student where the student can change their or register phone number and email. when making this request the user id must be attach to the params. email are unique in this route no two or more student can use a single mail and there is response for that and also checking for correct mail,phone number
+
+endpoint url:
+
+ https://fancy-worm-shoe.cyclic.app/api/students/update/{id}
+
+The endpoint supports the following HTTP requests:
+
+    PATCH
+    
+## Authentication
+the user must be lock in before the make any changes
+
+ 

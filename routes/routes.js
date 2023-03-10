@@ -6,15 +6,19 @@ const AdminAuth = require("../middlewares/adminAuth");
 const allocatedStudents = require("../controllers/allocatedStudents");
 const makeAdmin = require("../controllers/makeAdmin");
 const login = require("../controllers/login");
-const studentsRoom = require("../controllers/studentsRoom");
+const studentReciept = require("../controllers/studentReciept");
+const studentUpdate = require("../controllers/studentUpdate");
+
 const Router = express.Router();
 // get routes
-Router.get("/students/:id/details", studentInfor);
-Router.get("/students", AdminAuth, students);
-Router.get("/allocated-students", allocatedStudents);
-Router.get("/add-admin", AdminAuth, makeAdmin);
-Router.get("/students/:id/room", students);
+Router.get("/students/:id/details", AdminAuth, studentInfor);
+Router.get("/students", students);
+Router.get("/allocated-students", AdminAuth, allocatedStudents);
+Router.get("/add-admin/:id", AdminAuth, makeAdmin);
+Router.get("/students/:id/reciept", AdminAuth, studentReciept);
 // post routes
+Router.post("/add-student", AdminAuth, createStudent);
 Router.post("/login", login);
-Router.post("/create-student", createStudent);
+// patch
+Router.patch("/update/:id", AdminAuth, studentUpdate);
 module.exports = Router;
