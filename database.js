@@ -1,10 +1,10 @@
 const mysql = require("mysql2");
 require("dotenv").config();
 const pool = mysql.createPool({
-  host: "sql8.freemysqlhosting.net",
-  user: "sql8604931",
-  database: "sql8604931",
-  password: "nIRSt1Tyn7",
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  database: process.env.MYSQL_DATABASE,
+  password: process.env.MYSQL_PASSWORD,
   waitForConnections: true,
   connectionLimit: 10,
   maxIdle: 10,

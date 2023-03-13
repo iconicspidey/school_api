@@ -159,4 +159,40 @@ The endpoint supports the following HTTP requests:
 ## Authentication
 the user must be lock in before the make any changes
 
- 
+
+# All hostel endpoint
+ get all the hostel and and rooms 
+
+ https://fancy-worm-shoe.cyclic.app/api/hostels
+
+The endpoint supports the following HTTP requests:
+    GET
+
+# Get all the vacant hostel endpoint
+ https://fancy-worm-shoe.cyclic.app/api/vacant-hostels
+
+The endpoint supports the following HTTP requests:
+    GET
+# update student infor endpoint such as names etc
+this endpoint is for updating student information incase of error or miss spelling when registering a student.
+
+ https://fancy-worm-shoe.cyclic.app/api/edit/{id}/students
+
+this enpoint supports the following http request:
+
+### patch
+
+| parameters (keys) | value |
+|-------------------|-------|
+|    first_name     |string ,required |
+|    last_name | string, required|
+| other_name   |string|
+|gender | string , expected([female or male]), required|
+|student_level | number, require|
+|matric_no | string, required|
+|student_department | string , required|
+
+
+
+   
+  
