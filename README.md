@@ -2,6 +2,9 @@
 
 The  Login Endpoint is designed to handle HTTP requests and responses to enable communication between the web application and administrators who are responsible for managing the system. This endpoint serves as a means of authentication, allowing only authorized administrators to access restricted areas of the web application.
 
+Johndoe@gmail.com
+12345
+The admin
 The  Login Endpoint URL for this web application
 
 https://fancy-worm-shoe.cyclic.app/api/login
