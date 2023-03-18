@@ -41,6 +41,20 @@ fetch("https://fancy-worm-shoe.cyclic.app/api/admin/sample", {
 });
 ```
 
+## Test login for the admin
+```json
+{
+  "user": "johndoe@gmail.com",
+  "password": "12345"
+}
+```
+## test login for student
+```json
+{
+  "user": "12345",
+  "password": "12345"
+}
+```
 # Get all students endpoint
 
 This endpoint is protect only the admin can access it. The use of JWTs ensures that only authorized users can access the protected resources of the web application.
