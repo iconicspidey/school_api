@@ -10,6 +10,17 @@ app.use(cors());
 app.use(express.json());
 dotenv.config();
 // routes
+// pool.query(
+//   "alter table students add column is_active boolean not null default false",
+//   (err, value) => console.log(err, value)
+// );
+(async () => {
+  const [row, err] = await pool
+    .promise()
+    .query("INSERT INTO students(first_name)VALUES('mikail')");
+  console.log(row, err);
+})();
+// insertId
 app.use("/api", Router);
 app.use("/", (req, res) => {
   res.status(404).json("this route does not exist");

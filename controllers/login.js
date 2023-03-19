@@ -16,7 +16,7 @@ const login = async (req, res) => {
       );
     if (admin.length > 0) {
       delete admin[0].admin_password;
-      const token = jwt.sign(admin[0], secret, { expiresIn: "1d" });
+      const token = jwt.sign(admin[0], secret, { expiresIn: "24h" });
       res.status(200).json({ user: admin[0], token });
     } else {
       res.status(200).send("incorrect credentials");
@@ -30,7 +30,7 @@ const login = async (req, res) => {
       );
     if (student.length > 0) {
       delete student[0].student_password;
-      const token = jwt.sign(student[0], secret, { expiresIn: "1d" });
+      const token = jwt.sign(student[0], secret, { expiresIn: "24h" });
       res.status(200).json({ user: student[0], token });
     } else {
       res.status(200).send("incorrect credentials");
