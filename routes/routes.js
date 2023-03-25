@@ -29,9 +29,9 @@ Router.get("/hostels", hostels);
 Router.get("/vacant-hostels", vacantHostels);
 Router.get("/allocate/:matric/:hostelId", allocateHostel);
 Router.get("/download", download);
-// test
-Router.get("/payment", payment);
+
 // post routes
+Router.post("/payment/:student_id", payment);
 Router.post("/add-student", AdminAuth, createStudent);
 Router.post("/login", login);
 Router.post("/bulk-register", bulkStudentsReg);

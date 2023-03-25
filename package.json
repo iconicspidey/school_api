@@ -18,18 +18,17 @@
   },
   "homepage": "https://github.com/iconicspidey/school_api#readme",
   "dependencies": {
-    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "joi": "^17.8.3",
     "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.2.0",
     "paystack": "^2.0.1",
-    "xlsx": "^0.18.5"
+    "read-excel-file": "^5.6.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
-    "random-person": "^1.0.0"
+    "nodemon": "^2.0.20"
   }
 }

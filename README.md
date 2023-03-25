@@ -1,3 +1,6 @@
+#  base url
+https://fancy-worm-shoe.cyclic.app/api
+
 # Login end point
 
 The  Login Endpoint is designed to handle HTTP requests and responses to enable communication between the web application and administrators who are responsible for managing the system. This endpoint serves as a means of authentication, allowing only authorized administrators to access restricted areas of the web application.
@@ -387,3 +390,24 @@ If there is an internal server error, the server responds with a JSON object con
 GET
 ## Request URL
 /download
+
+
+# payment endpoint 
+
+Request method
+post
+
+## url
+  /payment/{student_id}
+## params
+/student_id
+## parameters
+```json
+{
+    "amount" : 200,
+    "student_level" : 00,
+    "gender" : "female",
+    "payment_ref" : "10010203030303030"
+}
+```
+
