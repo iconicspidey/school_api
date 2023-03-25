@@ -410,4 +410,8 @@ post
     "payment_ref" : "10010203030303030"
 }
 ```
+## response
+```json
+{"message" : ""}
+```
 
