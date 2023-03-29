@@ -19,7 +19,7 @@ const login = async (req, res) => {
       const token = jwt.sign(admin[0], secret, { expiresIn: "24h" });
       res.status(200).json({ user: admin[0], token });
     } else {
-      res.status(200).send("incorrect credentials");
+      res.status(403).send("incorrect credentials");
     }
   } else {
     const [student, __] = await pool
@@ -33,7 +33,7 @@ const login = async (req, res) => {
       const token = jwt.sign(student[0], secret, { expiresIn: "24h" });
       res.status(200).json({ user: student[0], token });
     } else {
-      res.status(200).send("incorrect credentials");
+      res.status(403).send("incorrect credentials");
     }
   }
 };
