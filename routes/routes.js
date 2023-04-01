@@ -5,7 +5,7 @@ const students = require("../controllers/students");
 const AdminAuth = require("../middlewares/adminAuth");
 const allocatedStudents = require("../controllers/allocatedStudents");
 const makeAdmin = require("../controllers/makeAdmin");
-const login = require("../controllers/login");
+const { adminLogin, studentLogin } = require("../controllers/login");
 const studentReciept = require("../controllers/studentReciept");
 const studentUpdate = require("../controllers/studentUpdate");
 const adminUpdateStudent = require("../controllers/adminUpdateStudent");
@@ -33,7 +33,8 @@ Router.get("/download", download);
 // post routes
 Router.post("/payment/:student_id", payment);
 Router.post("/add-student", AdminAuth, createStudent);
-Router.post("/login", login);
+Router.post("/student-login", studentLogin);
+Router.post("/admin-login", adminLogin);
 Router.post("/bulk-register", bulkStudentsReg);
 Router.post("/allocate-other-dept/:hostelId", allocateOtherDep);
 // patch

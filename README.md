@@ -1,39 +1,60 @@
 #  base url
 https://fancy-worm-shoe.cyclic.app/api
 
-# Login end point
+# Loginend point
 
 The  Login Endpoint is designed to handle HTTP requests and responses to enable communication between the web application and administrators who are responsible for managing the system. This endpoint serves as a means of authentication, allowing only authorized administrators to access restricted areas of the web application.
 
+https://fancy-worm-shoe.cyclic.app/api/student-login
 
-The admin
-The  Login Endpoint URL for this web application
+ or
 
-https://fancy-worm-shoe.cyclic.app/api/login
+https://fancy-worm-shoe.cyclic.app/api/admin-login
 
-## Supported Requests
 
-    POST
 
-## Request Parameters
+```HTTP
+POST /student-login
+```
+or
+```HTTP
+POST /admin-login
+```
+Request Body
 
-The following parameters are required for a successful login:
+The request body must be a JSON object containing the following properties:
 
-```javascript
+    user: The matriculation number of the student.
+    password: The password of the student.
+
+Example:
+```JSON
+
 {
-  "user": "string: email or student matric number",
-  "password": "string"
+  "user": "A12345",
+  "password": "mysecretpassword"
 }
-```
-**If the provided credentials are invalid, the response will be an error message indicating that the login attempt failed and the reason for the failure**
+````
+# Response
 
-## response
-the backend will response with the access token to be use in subsequent. here are the parameter that will be send back after correct credential have been supply
-```javascript
-    {user : object(), token : string()}
-```
-this how subsequent request will be like
-```javascript
+If the credentials are valid, the server responds with a JSON object containing the following properties:
+
+    user: An object containing the student's information, excluding their password.
+    token: A JWT that should be included in the Authorization header of subsequent authenticated requests.
+```json
+{
+  "user": {
+    "id": 1,
+    "matric_no": "A12345",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "johndoe@example.com"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+````
+  this how subsequent request will be like
+```json
 fetch("https://fancy-worm-shoe.cyclic.app/api/admin/sample", {
   methods: "post",
   body: JSON.stringify(),
@@ -54,7 +75,7 @@ fetch("https://fancy-worm-shoe.cyclic.app/api/admin/sample", {
 ## test login for student
 ```json
 {
-  "user": "12345",
+  "user": "1234567",
   "password": "12345"
 }
 ```
