@@ -42,31 +42,31 @@ const createStudent = async (req, res) => {
   } = value;
 
   if (!error) {
-    try {
-      await pool
-        .promise()
-        .query(
-          "INSERT INTO `students`(first_name,last_name,other_name,matric_no,student_level,gender,student_department)   VALUES(?,?,?,?,?,?,?)",
-          [
-            first_name,
-            last_name,
-            other_name,
-            matric_no,
-            student_level,
-            gender,
-            student_department,
-          ]
-        );
-      return res.status(201).send("student has been added successfuly");
-    } catch (error) {
-      if (error) {
-        return res.satus(200).send(error.message);
+    pool.query(
+      "INSERT INTO `students`(first_name,last_name,other_name,matric_no,student_level,gender,student_department)   VALUES(?,?,?,?,?,?,?)",
+      [
+        first_name,
+        last_name,
+        other_name,
+        matric_no,
+        student_level,
+        gender,
+        student_department,
+      ],
+      (err, result) => {
+        if (!err) {
+          res.status(201).send("student has been added successfuly");
+        }
       }
-    }
+    );
   } else {
-    if (error.details) {
-      return res.status(200).json(error.details);
-    }
+    const temp = [];
+    error.details.forEach((err) => {
+      temp.push({
+        [err.path]: err.message,
+      });
+    });
+    res.status(400).json(temp);
   }
 };
 module.exports = createStudent;

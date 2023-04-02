@@ -12,7 +12,6 @@ const changePassword = async (req, res) => {
   const { error, value } = schema.validate(body, {
     abortEarly: false,
   });
-
   if (error) {
     const temp = [];
     error.details.forEach((err) => {
@@ -28,7 +27,7 @@ const changePassword = async (req, res) => {
         temp.push({ [err.path]: err.message });
       }
     });
-    res.status(200).json(temp);
+    res.status(400).json(temp);
   } else {
     const { oldPassword, newPassword } = value;
     try {
@@ -39,7 +38,6 @@ const changePassword = async (req, res) => {
           [id, oldPassword]
         );
       if (verifyPassword.length > 0) {
-        console.log(verifyPassword);
         const sql =
           "update students set student_password = ? where matric_no = ?";
         await pool.promise().query(sql, [newPassword, id]);
@@ -47,7 +45,7 @@ const changePassword = async (req, res) => {
           .status(201)
           .json({ message: "password has been change successfuly" });
       } else {
-        res.status(200).json({ message: "wrong old password" });
+        res.status(400).json({ message: "wrong old password" });
       }
     } catch (error) {
       res.sendStatus(500);
