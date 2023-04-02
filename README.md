@@ -436,3 +436,24 @@ post
 {"message" : ""}
 ```
 
+# Busary 
+
+## Activate/Deactivate Student Account
+
+This API endpoint is responsible for activating or deactivating a student's account in a student database.
+
+
+# Request
+
+GET /busary/:id
+
+# parameters
+| Parameter | Type   | Description                               |
+| --------- | ------ | ----------------------------------------- |
+| id        | string | The ID of the student to activate/deactivate |
+
+# Response
+| Status Code | Response Body                                   | Description                                         |
+| ----------- | ----------------------------------------------- | --------------------------------------------------- |
+| `201`       | `"student has been activated successfully"`    | The student's account was successfully updated      |
+| `400`       | `{ "error": "error message" }`                  | An error occurred while updating the student's account |

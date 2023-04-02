@@ -17,6 +17,7 @@ const payment = require("../controllers/payment");
 const download = require("../controllers/download");
 const bulkStudentsReg = require("../controllers/bulkStudentsReg");
 const allocateOtherDep = require("../controllers/allocateOtherDep");
+const busary = require("../controllers/busary");
 
 const Router = express.Router();
 // get routes
@@ -29,6 +30,7 @@ Router.get("/hostels", hostels);
 Router.get("/vacant-hostels", vacantHostels);
 Router.get("/allocate/:matric/:hostelId", allocateHostel);
 Router.get("/download", download);
+Router.get("/bursary/:id", busary);
 
 // post routes
 Router.post("/payment/:student_id", payment);
